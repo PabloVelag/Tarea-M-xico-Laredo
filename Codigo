@@ -1,0 +1,126 @@
+import pandas as pd 
+import matplotlib.pyplot as plt
+import statistics
+
+df = pd.read_csv('fronteras.csv')
+Port = df['Port Name']=='Laredo'
+Measure = df['Measure']=='Pedestrians'
+df['Date'] =  pd.to_datetime(df['Date'], format='%m/%d/%Y %H:%M')
+fecha = df['Date'].dt.strftime('%Y').isin(['2000' , '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'])
+df = df[Port & Measure & fecha]
+print(df)
+
+#ejercicio 1
+def pregunta1(mes, ano):
+    is_ano = df['Date'].dt.strftime('%Y').isin(ano)
+    is_mes = df["Date"].dt.strftime("%m") == mes
+    frame1 = df[is_ano & is_mes]
+    cuadro_descrip = frame1.Value.mean()
+    #print(ano)
+    print(cuadro_descrip)
+
+
+lista1 = ['2000' , '2001', '2002', '2003', '2004']
+lista2 = ['2005', '2006', '2007', '2008', '2009']
+lista3 = ['2010', '2011', '2012', '2013', '2014']
+lista4 = ['2015', '2016', '2017', '2018']
+
+print('\nenero')
+pregunta1('01', lista1)
+pregunta1('01', lista2)
+pregunta1('01', lista3)
+pregunta1('01', lista4)
+#pregunta1('01', '2019')
+
+print('\nfebrero')
+pregunta1('02', lista1)
+pregunta1('02', lista2)
+pregunta1('02', lista3)
+pregunta1('02', lista4)
+#pregunta1('02', '2019')
+
+print('\nmarzo')
+pregunta1('03', lista1)
+pregunta1('03', lista2)
+pregunta1('03', lista3)
+pregunta1('03', lista4)
+pregunta1('03', ['2019'])
+print('\nabril')
+pregunta1('04', lista1)
+pregunta1('04', lista2)
+pregunta1('04', lista3)
+pregunta1('04', lista4)
+pregunta1('04', ['2019'])
+print('\nmayo')
+pregunta1('05', lista1)
+pregunta1('05', lista2)
+pregunta1('05', lista3)
+pregunta1('05', lista4)
+pregunta1('05', ['2019'])
+print('\njunio')
+pregunta1('06', lista1)
+pregunta1('06', lista2)
+pregunta1('06', lista3)
+pregunta1('06', lista4)
+pregunta1('06', ['2019'])
+print('\njulio')
+pregunta1('07', lista1)
+pregunta1('07', lista2)
+pregunta1('07', lista3)
+pregunta1('07', lista4)
+pregunta1('07', ['2019'])
+print('\nagosto')
+pregunta1('08', lista1)
+pregunta1('08', lista2)
+pregunta1('08', lista3)
+pregunta1('08', lista4)
+pregunta1('08', ['2019'])
+print('\nseptiembre')
+pregunta1('09', lista1)
+pregunta1('09', lista2)
+pregunta1('09', lista3)
+pregunta1('09', lista4)
+pregunta1('09', ['2019'])
+print('\noctubre')
+pregunta1('10', lista1)
+pregunta1('10', lista2)
+pregunta1('10', lista3)
+pregunta1('10', lista4)
+pregunta1('10', ['2019'])
+print('\nnoviembre')
+pregunta1('11', lista1)
+pregunta1('11', lista2)
+pregunta1('11', lista3)
+pregunta1('11', lista4)
+pregunta1('11', ['2019'])
+print('\ndiciembre')
+pregunta1('12', lista1)
+pregunta1('12', lista2)
+pregunta1('12', lista3)
+pregunta1('12', lista4)
+pregunta1('12', [['2019']])
+
+#Ejercicio 2
+fecha = df['Date'].dt.strftime('%Y').isin(['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'])
+df1 = df[fecha]
+print(df1)
+df1_des= df1["Value"].describe()
+print(df1_des)\
+
+median = statistics.median(df1["Value"])
+print("The median is", median)\
+
+maxi = df1["Value"].max
+mini = df1["Value"].min
+#print(maxi)
+#centro = (maxi + mini)
+#centro = (5 + 5)
+#print ("El centro del rango es", centro)\
+
+df1_05 = df1['Value'].quantile(0.05)
+df1_95 = df1['Value'].quantile(0.95)
+#Como recortamos el 10% de los datos quitamos el 5% menos y el 5% mayor
+Value = (df1['Value'] > df1_05) & (df1['Value'] < df1_95)
+df1_med = df1[Value]
+median_10 = statistics.median(df1_med["Value"])
+print("The median 10% is", median_10)\
