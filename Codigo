@@ -110,17 +110,13 @@ print(df1_des)\
 median = statistics.median(df1["Value"])
 print("The median is", median)\
 
-maxi = df1["Value"].max
-mini = df1["Value"].min
-#print(maxi)
-#centro = (maxi + mini)
-#centro = (5 + 5)
-#print ("El centro del rango es", centro)\
 
 df1_05 = df1['Value'].quantile(0.05)
 df1_95 = df1['Value'].quantile(0.95)
 #Como recortamos el 10% de los datos quitamos el 5% menos y el 5% mayor
 Value = (df1['Value'] > df1_05) & (df1['Value'] < df1_95)
 df1_med = df1[Value]
-median_10 = statistics.median(df1_med["Value"])
-print("The median 10% is", median_10)\
+df1_med_des = df1_med["Value"].describe()
+print(df1_med_des)
+
+
