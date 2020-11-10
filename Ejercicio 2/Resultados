@@ -1,1 +1,12 @@
-hgvgvvh
+En general, todas las medidas están muy cerca. Esto nos indica que la base de datos con la que estamos trabajando tiene todos sus números
+muy apretados. Las ventajas de tener bases de datos así es que toda las medidas de tendencia central hacen un gran trabajo y se acercan mucho 
+a la realidad. Adicionalmente podemos ver que estamos haciendo bien las cosas porque los números que arroja el código hacen sentido. 
+
+Si me preguntaran con que medida me quedo, tomando en ceunta que todas son muy parecida, yo usaría la media. Esto se debe a que utiliza todos los valores
+y ya que aparentemente no hay "outliers" la mayoría de los datos deben de estar alrededor de ese valor. 
+
+
+
+La media es: 287,616
+La medianan es: 285,331
+La media recortada 10% es: 287,169 *lo volví a revisar y encontré el error
